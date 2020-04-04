@@ -165,6 +165,6 @@ spec:
     - protocol: "TCP"
       port: 8081
       targetPort: 8081
-      nodePort: 32881
+      nodePort: 32081
   type: NodePort
 ---
