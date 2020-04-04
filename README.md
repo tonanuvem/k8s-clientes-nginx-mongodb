@@ -6,7 +6,9 @@ Para rodar a aplicação:
 
 Os seguintes serviços serão criados:
 
+```
 > ~/k8s-nginx-clientes-mongodb$ kubectl get svc
+```
 
 |NAME          |TYPE       |CLUSTER-IP     |EXTERNAL-IP  |PORT(S)         |AGE|
 | --- | --- | --- | ---| --- | ---|
