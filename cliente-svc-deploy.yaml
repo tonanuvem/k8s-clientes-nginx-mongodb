@@ -73,8 +73,8 @@ spec:
     - protocol: "TCP"
       port: 5000
       targetPort: 5000
-      nodePort: 32500
-  type: NodePort
+#      nodePort: 32500
+#  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
