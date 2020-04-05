@@ -2,7 +2,7 @@
 
 Para rodar a aplicação:
 
-> kubectl create -f cliente-svc-deploy.yaml
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/cliente-svc-deploy.yaml
 
 Os seguintes serviços serão criados:
 
@@ -17,3 +17,4 @@ Os seguintes serviços serão criados:
 |mongo          |ClusterIP   |10.102.58.27    |<none>        |27017/TCP        |2m40s
 |mongoexpress   |NodePort    |10.100.3.61     |<none>        |8081:32081/TCP   |2m40s
  
+Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-microservice-mongodb
