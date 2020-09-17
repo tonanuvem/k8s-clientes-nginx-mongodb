@@ -18,3 +18,11 @@ Os seguintes serviços serão criados:
 |mongoexpress   |NodePort    |10.100.3.61     |<none>        |8081:32081/TCP   |2m40s
  
 Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-microservice-mongodb
+
+<hr>
+
+<li> Testar com Helm:
+ 
+ > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
+ 
+ link: https://hub.helm.sh/charts/bitnami/mongodb
