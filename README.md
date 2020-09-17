@@ -36,12 +36,12 @@ Demora uns 10 min:
 > kubectl -n kube-system describe pods <portworx-pod-id>
  
 Events:
-   Type     Reason                             Age                     From                  Message
-   ----     ------                             ----                    ----                  -------
-   Normal   Scheduled                          7m57s                   default-scheduler     Successfully assigned kube-system/portworx-qxtw4 to k8s-node-2
-   ...
-   Warning  Unhealthy                          5m15s (x15 over 7m35s)  kubelet, k8s-node-2   Readiness probe failed: HTTP probe failed with statuscode: 503
-   Normal   NodeStartSuccess                   5m7s                    portworx, k8s-node-2  PX is ready on this node
+   |Type     |Reason                             |Age                     |From                  |Message
+   |----     |------                             |----                    |----                  |-------
+   |Normal   |Scheduled                          |7m57s                   |default-scheduler     |Successfully assigned kube-system/portworx-qxtw4 to k8s-node-2
+   |...
+   |Warning  |Unhealthy                          |5m15s (x15 over 7m35s)  |kubelet, k8s-node-2   |Readiness probe failed: HTTP probe failed with statuscode: 503
+   |Normal   |NodeStartSuccess                   |5m7s                    |portworx, k8s-node-2  |PX is ready on this node
 
 <ol> Helm
  > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
