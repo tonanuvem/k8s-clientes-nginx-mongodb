@@ -71,7 +71,11 @@ Events:
    |Warning  |Unhealthy                          |5m15s (x15 over 7m35s)  |kubelet, k8s-node-2   |Readiness probe failed: HTTP probe failed with statuscode: 503
    |Normal   |NodeStartSuccess                   |5m7s                    |portworx, k8s-node-2  |PX is ready on this node
 
+<hr>
+
 Exemplo de uso: https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/create-pvcs/dynamic-provisioning/
+
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/pvc-storageclass.yaml
 
 <ol> Helm
  > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
