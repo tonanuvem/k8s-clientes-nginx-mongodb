@@ -49,17 +49,18 @@ Demora uns 4 min.
 > PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 
-|Status: |PX is operational
-| ---
-| ...
-|Cluster    |Summary
-|	Cluster ID:   |px-fiap
-|	Cluster UUID: |2fe36539-b18e-4d29-a97a-f5a87fab8ba1
-|	Scheduler: kubernetes
-|	Nodes: 3 node(s) with storage (3 online)
-|Global Storage Pool
-|	Total Used    	:  5.6 GiB
-|	Total Capacity	:  90 GiB
+Nodes: 3 node(s) with storage (3 online)
+Global Storage Pool
+Total Used    	:  5.6 GiB
+Total Capacity	:  90 GiB
+
+-
+
+- Agora temos um cluster Portworx de 3 nós ativado!
+- Vamos mergulhar em nosso status de cluster.
+- Todos os 3 nós estão online e usam nomes de nós Kubernetes como os IDs de nós Portworx.
+- Observe que Portworx agrupou o dispositivo de bloco de cada nó em um cluster de armazenamento de 3X.
+- O Portworx detectou o tipo de mídia do dispositivo de bloco como SSD e criou um pool de armazenamento para isso.
 
 > kubectl -n kube-system describe pods $PX_POD
  
