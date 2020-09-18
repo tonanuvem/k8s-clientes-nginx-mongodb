@@ -44,11 +44,9 @@ Kubectl Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server
 
 > kubectl apply -f 'https://install.portworx.com/2.6?mc=false&kbver=1.19.2&oem=esse&user=075ebe88-f8e2-11ea-a2c5-c24e499c7467&b=true&c=px-cluster-3ae228df-0ebe-4a69-bbf5-4c6bdc30cc18&stork=true&lh=true&st=k8s'
 
-> kubectl get pods -o wide -n kube-system -l name=portworx
+> watch kubectl get pods -o wide -n kube-system -l name=portworx
 
-It can take a few minutes for Portworx to complete initialization
-When all nodes are Ready 1/1
-Demora uns 4 min.
+Aguadar até: Ready 1/1 (Demora uns 4 min) --> Para sair, CTRL + C
 
 > PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
 
