@@ -23,7 +23,7 @@ Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-micros
 
 * Portworks
 
-Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version: / {print $3}' )
+Instalar:
 
 > lsblk
 
@@ -39,6 +39,8 @@ Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version
 - s=/dev/xvdb specifies the block device to use
  
 ou
+
+Kubectl Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version: / {print $3}' )
 
 > kubectl apply -f 'https://install.portworx.com/2.6?mc=false&kbver=1.19.2&oem=esse&user=075ebe88-f8e2-11ea-a2c5-c24e499c7467&b=true&c=px-cluster-3ae228df-0ebe-4a69-bbf5-4c6bdc30cc18&stork=true&lh=true&st=k8s'
 
