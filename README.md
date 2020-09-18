@@ -98,6 +98,16 @@ mongo-7d5bdbdbb-jktm7
 
 > kubectl exec -it $POD -- mongo --host localhost
 
+db.ships.insert({name:'USS Enterprise-D',operator:'Starfleet',type:'Explorer',class:'Galaxy',crew:750,codes:[10,11,12]})
+
+db.ships.insert({name:'Narada',operator:'Romulan Star Empire',type:'Warbird',class:'Warbird',crew:65,codes:[251,251,220]})
+
+db.ships.find().pretty()
+
+db.ships.find({}, {name:true, _id:false})
+
+db.ships.findOne({'name':'USS Enterprise-D'})
+
 * Helm
  
 > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
