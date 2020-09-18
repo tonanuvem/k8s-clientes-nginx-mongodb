@@ -26,14 +26,49 @@ Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-micros
 <ol> Portworks
 
 Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version: / {print $3}' )
+
+> lsblk
+> VER=`kubectl version --short | awk -Fv '/Server Version: /{print $3}'`
+> curl -L -s -o px-spec.yaml "https://install.portworx.com/2.6?mc=false&kbver=${VER}&b=true&s=%2Fdev%2Fxvdb&c=px-fiap&stork=true&st=k8s"
+> kubectl apply -f px-spec.yaml
+
+c=px-fiap specifies the cluster name
+b=true specifies to use internal etcd
+kbVer=${VER} specifies the Kubernetes version
+s=/dev/xvdb specifies the block device to use
  
+ou
+
 > kubectl apply -f 'https://install.portworx.com/2.6?mc=false&kbver=1.19.2&oem=esse&user=075ebe88-f8e2-11ea-a2c5-c24e499c7467&b=true&c=px-cluster-3ae228df-0ebe-4a69-bbf5-4c6bdc30cc18&stork=true&lh=true&st=k8s'
 
 > kubectl get pods -o wide -n kube-system -l name=portworx
+It can take a few minutes for Portworx to complete initialization
+When all nodes are Ready 1/1
+Demora uns 4 min.
 
-Demora uns 10 min:
+> PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
+> kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 
-> kubectl -n kube-system describe pods <portworx-pod-id>
+Status: PX is operational
+ ...
+Cluster Summary
+	Cluster ID: px-fiap
+	Cluster UUID: 2fe36539-b18e-4d29-a97a-f5a87fab8ba1
+	Scheduler: kubernetes
+	Nodes: 3 node(s) with storage (3 online)
+	IP		ID					SchedulerNodeName	StorageNode	Used	Capacity	Status	StorageStatus	Version		Kernel		OS
+	10.0.1.247	96a35afa-318d-4948-8441-e92c7e1db332	worker3			Yes		1.9 GiB	30 GiB		Online	Up (This node)	2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
+	10.0.1.146	3a4ee506-1603-4efe-9b7a-24633af900c1	worker2			Yes		1.9 GiB	30 GiB		Online	Up		2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
+	10.0.1.246	2743b0f5-ca17-4a13-a877-980d1bd1354b	worker1			Yes		1.9 GiB	30 GiB		Online	Up		2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
+	Warnings:
+		 WARNING: Insufficient CPU resources. Detected: 2 cores, Minimum required: 4 cores
+		 WARNING: Insufficient Memory(RAM) resources. Detected: 4.1 GB, Minimum required: 4.3 GB
+		 WARNING: Internal Kvdb is not using dedicated drive on nodes [10.0.1.146 10.0.1.246 10.0.1.247]. This configuration is not recommended for production clusters.
+Global Storage Pool
+	Total Used    	:  5.6 GiB
+	Total Capacity	:  90 GiB
+
+> kubectl -n kube-system describe pods $PX_POD
  
 Events:
    |Type     |Reason                             |Age                     |From                  |Message
