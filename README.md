@@ -137,6 +137,8 @@ db.ships.find({}, {name:true, _id:false})
 
 db.ships.findOne({'name':'USS Enterprise-D'})
 
+exit
+
 - Verificar o volume
 
 You can run pxctl commands to inspect your volume:
