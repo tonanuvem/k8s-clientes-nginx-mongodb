@@ -151,6 +151,10 @@ You can run pxctl commands to inspect your volume:
 
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume inspect ${VOL}
 
+Retornar o node do Cluster:
+
+> kubectl uncordon ${NODE}
+
 <hr>
 
 * Expandindo volumes:
