@@ -1,21 +1,20 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
 metadata:
-    name: px-ha-sc
+    name: portworx-storageclass
 provisioner: kubernetes.io/portworx-volume
 parameters:
    repl: "3"
-   io_profile: "db"
-   io_priority: "high"
+   io_profile: "db_remote"
    fs: "xfs"
 allowVolumeExpansion: true
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-   name: px-mongo-pvc
+   name: mongo-pvc
    annotations:
-     volume.beta.kubernetes.io/storage-class: px-ha-sc
+     volume.beta.kubernetes.io/storage-class: portworx-storageclass
 spec:
    accessModes:
      - ReadWriteOnce
