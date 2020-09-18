@@ -186,7 +186,7 @@ exit
 
 Snapshots are just like volumes so we can go ahead and use it to start a new instance of MongoDB. Note here that we're leaving the old instance to carry on with it's version of the volume and we're creating a brand new instance of MongoDB with the snapshot data!
 
->  
+>  helm install --name px-mongo-snap-clone --set persistence.existingClaim=px-mongo-snap-clone stable/mongodb
 
 <hr>
 
