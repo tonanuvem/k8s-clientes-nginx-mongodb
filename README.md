@@ -144,6 +144,22 @@ You can run pxctl commands to inspect your volume:
 
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume inspect ${VOL}
 
+> kubectl get pvc px-mongo-pvc
+
+Expand the volume: Since we added the allowVolumeExpansion: true attribute to our storage class you can expand the PVC by editing the px-mongo-pvc.yaml file and then re-applying this file using kubectl.
+
+> sed -i 's/10Gi/20Gi/g' px-mongo-pvc.yaml
+
+> kubectl apply -f px-mongo-pvc.yaml
+
+Inspect the volume and verify that it now has 20Gi capacity:
+
+> kubectl get pvc px-mongo-pvc
+
+As you can see the volume is now expanded and our MongoDB database didn't require restarting.
+
+> kubectl get pods
+
 <hr>
 
 * Helm
