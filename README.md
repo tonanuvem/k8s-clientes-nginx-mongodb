@@ -162,6 +162,34 @@ As you can see the volume is now expanded and our MongoDB database didn't requir
 
 <hr>
 
+* Snapshot de um Volume:
+
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_snapshot.yaml
+
+You can see the snapshots using the following command:
+
+> kubectl get volumesnapshot,volumesnapshotdatas
+
+Now we're going to go ahead and do something stupid:
+
+> POD=`kubectl get pods | grep 'px-mongo-' | awk '{print $1}'`
+
+> kubectl exec -it $POD -- mongo --host px-mongo-mongodb
+
+db.ships.remove({})
+
+db.ships.find({}, {name:true, _id:false})
+
+exit
+
+- Restore the snapshot and see your data is still there
+
+Snapshots are just like volumes so we can go ahead and use it to start a new instance of MongoDB. Note here that we're leaving the old instance to carry on with it's version of the volume and we're creating a brand new instance of MongoDB with the snapshot data!
+
+>  
+
+<hr>
+
 * Helm
  
 > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
