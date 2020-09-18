@@ -87,6 +87,17 @@ Verificar o volume criado dinamicamente.
 
 <hr>
 
+* MongoDB
+
+Criar o Deploy e SVC
+
+> POD=`kubectl get pods | grep 'mongo-' | awk '{print $1}'`
+
+> echo $POD
+mongo-7d5bdbdbb-jktm7
+
+> kubectl exec -it $POD -- mongo --host localhost
+
 * Helm
  
 > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
