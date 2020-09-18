@@ -79,6 +79,18 @@ Verificar o volume criado dinamicamente.
 
 <hr>
 
+Executar CLIENTE_MONGO:
+
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_mongo-deploy.yaml
+
+> kubectl get svc
+
+> ./ip
+
+Acessar : http://IP:32000
+
+<hr>
+
 * MongoDB
 
 Criar o Deploy e SVC
