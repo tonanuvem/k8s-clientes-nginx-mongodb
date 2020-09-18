@@ -6,7 +6,6 @@ provisioner: kubernetes.io/portworx-volume
 parameters:
    repl: "3"
    shared: "true"
-#   shared: "true"
    io_profile: "db_remote"
    fs: "xfs"
 allowVolumeExpansion: true
