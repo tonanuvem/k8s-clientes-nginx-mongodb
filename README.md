@@ -26,20 +26,24 @@ Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-micros
 Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version: / {print $3}' )
 
 > lsblk
+
 > VER=`kubectl version --short | awk -Fv '/Server Version: /{print $3}'`
+
 > curl -L -s -o px-spec.yaml "https://install.portworx.com/2.6?mc=false&kbver=${VER}&b=true&s=%2Fdev%2Fxvdb&c=px-fiap&stork=true&st=k8s"
+
 > kubectl apply -f px-spec.yaml
 
-c=px-fiap specifies the cluster name
-b=true specifies to use internal etcd
-kbVer=${VER} specifies the Kubernetes version
-s=/dev/xvdb specifies the block device to use
+- c=px-fiap specifies the cluster name
+- b=true specifies to use internal etcd
+- kbVer=${VER} specifies the Kubernetes version
+- s=/dev/xvdb specifies the block device to use
  
 ou
 
 > kubectl apply -f 'https://install.portworx.com/2.6?mc=false&kbver=1.19.2&oem=esse&user=075ebe88-f8e2-11ea-a2c5-c24e499c7467&b=true&c=px-cluster-3ae228df-0ebe-4a69-bbf5-4c6bdc30cc18&stork=true&lh=true&st=k8s'
 
 > kubectl get pods -o wide -n kube-system -l name=portworx
+
 It can take a few minutes for Portworx to complete initialization
 When all nodes are Ready 1/1
 Demora uns 4 min.
