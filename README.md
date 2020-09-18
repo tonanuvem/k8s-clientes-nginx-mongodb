@@ -21,7 +21,7 @@ Código fonte da aplicação: https://github.com/tonanuvem/nginx-clientes-micros
 
 <hr>
 
-<li> Portworks
+* Portworks
 
 Versao 1.19.2 ( verificar com kubectl version --short | awk -Fv '/Server Version: / {print $3}' )
 
@@ -71,7 +71,7 @@ Events:
 
 <hr>
 
-<ol> Persistent Volume Claim (PVC) e Storage Class (SC)
+* Persistent Volume Claim (PVC) e Storage Class (SC)
 
 Exemplo de uso: https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/create-pvcs/dynamic-provisioning/
 
@@ -87,7 +87,8 @@ Verificar o volume criado dinamicamente.
 
 <hr>
 
-<ol> Helm
- > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
+* Helm
+ 
+> helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
  
  link: https://hub.helm.sh/charts/bitnami/mongodb
