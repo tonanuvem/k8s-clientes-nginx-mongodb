@@ -118,6 +118,34 @@ db.ships.findOne({'name':'USS Enterprise-D'})
 
 > watch kubectl get pods -l app=mongo -o wide
 
+Verify data is still available
+
+ > POD=`kubectl get pods | grep 'px-mongo-' | awk '{print $1}'`
+ 
+ > kubectl exec -it $POD -- mongo --host px-mongo-mongodb
+
+db.ships.insert({name:'USS Enterprise-D',operator:'Starfleet',type:'Explorer',class:'Galaxy',crew:750,codes:[10,11,12]})
+
+db.ships.insert({name:'Narada',operator:'Romulan Star Empire',type:'Warbird',class:'Warbird',crew:65,codes:[251,251,220]})
+
+db.ships.find().pretty()
+
+db.ships.find({}, {name:true, _id:false})
+
+db.ships.findOne({'name':'USS Enterprise-D'})
+
+- Inspect the volume
+
+You can run pxctl commands to inspect your volume:
+
+> VOL=`kubectl get pvc | grep px-mongo-pvc | awk '{print $3}'`
+
+> PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
+
+> kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume inspect ${VOL}
+
+<hr>
+
 * Helm
  
 > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
