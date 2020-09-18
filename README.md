@@ -49,24 +49,24 @@ Demora uns 4 min.
 > PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 
-Status: PX is operational
- ...
-Cluster Summary
-	Cluster ID: px-fiap
-	Cluster UUID: 2fe36539-b18e-4d29-a97a-f5a87fab8ba1
+|Status: PX is operational
+| ...
+|Cluster Summary
+|	Cluster ID: px-fiap
+|	Cluster UUID: 2fe36539-b18e-4d29-a97a-f5a87fab8ba1
 	Scheduler: kubernetes
 	Nodes: 3 node(s) with storage (3 online)
 	IP		ID					SchedulerNodeName	StorageNode	Used	Capacity	Status	StorageStatus	Version		Kernel		OS
 	10.0.1.247	96a35afa-318d-4948-8441-e92c7e1db332	worker3			Yes		1.9 GiB	30 GiB		Online	Up (This node)	2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
 	10.0.1.146	3a4ee506-1603-4efe-9b7a-24633af900c1	worker2			Yes		1.9 GiB	30 GiB		Online	Up		2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
 	10.0.1.246	2743b0f5-ca17-4a13-a877-980d1bd1354b	worker1			Yes		1.9 GiB	30 GiB		Online	Up		2.6.0.0-208389c	4.15.0-1057-aws	Ubuntu 18.04.3 LTS
-	Warnings:
+|	Warnings:
 		 WARNING: Insufficient CPU resources. Detected: 2 cores, Minimum required: 4 cores
 		 WARNING: Insufficient Memory(RAM) resources. Detected: 4.1 GB, Minimum required: 4.3 GB
 		 WARNING: Internal Kvdb is not using dedicated drive on nodes [10.0.1.146 10.0.1.246 10.0.1.247]. This configuration is not recommended for production clusters.
-Global Storage Pool
-	Total Used    	:  5.6 GiB
-	Total Capacity	:  90 GiB
+|Global Storage Pool
+|	Total Used    	:  5.6 GiB
+|	Total Capacity	:  90 GiB
 
 > kubectl -n kube-system describe pods $PX_POD
  
