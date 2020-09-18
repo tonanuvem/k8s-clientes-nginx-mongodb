@@ -97,10 +97,9 @@ Verificar o volume criado dinamicamente.
 
 Criar o Deploy e SVC
 
-> POD=`kubectl get pods | grep 'mongo-' | awk '{print $1}'`
+> POD=$(kubectl get pods | grep 'mongo-' | awk '{print $1}')
 
 > echo $POD
-mongo-7d5bdbdbb-jktm7
 
 > kubectl exec -it $POD -- mongo --host localhost
 
@@ -114,25 +113,25 @@ db.ships.find({}, {name:true, _id:false})
 
 db.ships.findOne({'name':'USS Enterprise-D'})
 
-> NODE=`kubectl get pods -l app=mongodb -o wide | grep -v NAME | awk '{print $7}'`
+exit
+
+> NODE=$(kubectl get pods -l app=mongo -o wide | grep -v NAME | awk '{print $7}')
+
+> echo $NODE
 
 > kubectl cordon ${NODE}
 
-> POD=`kubectl get pods -l app=mongodb -o wide | grep -v NAME | awk '{print $1}'`
+> POD=$(kubectl get pods -l app=mongo -o wide | grep -v NAME | awk '{print $1}')
 
 > kubectl delete pod ${POD}
 
 > watch kubectl get pods -l app=mongo -o wide
 
-Verify data is still available
+Verificar os dados:
 
- > POD=`kubectl get pods | grep 'px-mongo-' | awk '{print $1}'`
+> POD=$(kubectl get pods | grep mongo- | awk '{print $1}')
  
- > kubectl exec -it $POD -- mongo --host px-mongo-mongodb
-
-db.ships.insert({name:'USS Enterprise-D',operator:'Starfleet',type:'Explorer',class:'Galaxy',crew:750,codes:[10,11,12]})
-
-db.ships.insert({name:'Narada',operator:'Romulan Star Empire',type:'Warbird',class:'Warbird',crew:65,codes:[251,251,220]})
+> kubectl exec -it $POD -- mongo --host localhost
 
 db.ships.find().pretty()
 
@@ -140,29 +139,35 @@ db.ships.find({}, {name:true, _id:false})
 
 db.ships.findOne({'name':'USS Enterprise-D'})
 
-- Inspect the volume
+- Verificar o volume
 
 You can run pxctl commands to inspect your volume:
 
-> VOL=`kubectl get pvc | grep px-mongo-pvc | awk '{print $3}'`
+> VOL=$(kubectl get pvc | grep mongo-pvc | awk '{print $3}')
+
+> echo $VOL
 
 > PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
 
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume inspect ${VOL}
 
-> kubectl get pvc px-mongo-pvc
+<hr>
 
-Expand the volume: Since we added the allowVolumeExpansion: true attribute to our storage class you can expand the PVC by editing the px-mongo-pvc.yaml file and then re-applying this file using kubectl.
+* Expandindo volumes:
+
+> kubectl get pvc mongo-pvc
+
+Expanda o volume: como adicionamos o atributo allowVolumeExpansion: true à nossa classe de armazenamento, você pode expandir o PVC editando o arquivo px-mongo-pvc.yaml e, em seguida, reaplicando esse arquivo usando kubectl.
 
 > sed -i 's/10Gi/20Gi/g' px-mongo-pvc.yaml
 
 > kubectl apply -f px-mongo-pvc.yaml
 
-Inspect the volume and verify that it now has 20Gi capacity:
+Inspecione o volume e verifique se ele agora tem capacidade de 20Gi:
 
 > kubectl get pvc px-mongo-pvc
 
-As you can see the volume is now expanded and our MongoDB database didn't require restarting.
+Volume agora está expandido e nosso banco de dados MongoDB não precisou ser reiniciado.
 
 > kubectl get pods
 
@@ -172,11 +177,11 @@ As you can see the volume is now expanded and our MongoDB database didn't requir
 
 > kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_snapshot.yaml
 
-You can see the snapshots using the following command:
+Snapshots comandos:
 
 > kubectl get volumesnapshot,volumesnapshotdatas
 
-Now we're going to go ahead and do something stupid:
+Do something stupid:
 
 > POD=`kubectl get pods | grep 'px-mongo-' | awk '{print $1}'`
 
@@ -190,7 +195,7 @@ exit
 
 - Restore the snapshot and see your data is still there
 
-Snapshots are just like volumes so we can go ahead and use it to start a new instance of MongoDB. Note here that we're leaving the old instance to carry on with it's version of the volume and we're creating a brand new instance of MongoDB with the snapshot data!
+Snapshots são como volumes, portanto, podemos prosseguir e usá-los para iniciar uma nova instância do MongoDB. Observe aqui que estamos deixando a instância antiga para continuar com sua versão do volume e estamos criando uma nova instância do MongoDB com os dados do instantâneo!
 
 >  helm install --name px-mongo-snap-clone --set persistence.existingClaim=px-mongo-snap-clone stable/mongodb
 
