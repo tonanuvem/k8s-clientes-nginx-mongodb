@@ -52,15 +52,11 @@ Demora uns 4 min.
 |Status: |PX is operational
 | ---
 | ...
-|Cluster |Summary
-|	Cluster ID: |px-fiap
-|	Cluster UUID: 2fe36539-b18e-4d29-a97a-f5a87fab8ba1
+|Cluster    |Summary
+|	Cluster ID:   |px-fiap
+|	Cluster UUID: |2fe36539-b18e-4d29-a97a-f5a87fab8ba1
 |	Scheduler: kubernetes
 |	Nodes: 3 node(s) with storage (3 online)
-|	Warnings:
-|	 |WARNING: Insufficient CPU resources. Detected: 2 cores, Minimum required: 4 cores
-|	 |WARNING: Insufficient Memory(RAM) resources. Detected: 4.1 GB, Minimum required: 4.3 GB
-|	 |WARNING: Internal Kvdb is not using dedicated drive on nodes [10.0.1.146 10.0.1.246 10.0.1.247]. This configuration is not recommended for production clusters.
 |Global Storage Pool
 |	Total Used    	:  5.6 GiB
 |	Total Capacity	:  90 GiB
