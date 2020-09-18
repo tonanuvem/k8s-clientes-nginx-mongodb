@@ -188,6 +188,46 @@ Snapshots are just like volumes so we can go ahead and use it to start a new ins
 
 >  helm install --name px-mongo-snap-clone --set persistence.existingClaim=px-mongo-snap-clone stable/mongodb
 
+- Verify data is still available. Run the client and in a shell.
+
+> POD=`kubectl get pods | grep 'px-mongo-snap' | awk '{print $1}'`
+
+> kubectl exec -it $POD -- mongo --host px-mongo-snap-clone-mongodb
+
+db.ships.findOne()
+
+<hr>
+
+* Mongo Replicas (link: https://docs.mongodb.com/manual/replication/)
+
+MongoDB can run in a single node configuration as we showed and in a clustered configuration using replica sets (not to be confused with the Kubernetes Stateful Sets). A replica set is a group of MongoDB instances that maintain the same data set. A replica set contains several data bearing nodes and optionally one arbiter node. Of the data bearing nodes, one and only one member is deemed the primary node, while the other nodes are deemed secondary nodes. 
+
+- Deploying a MongoDB Replica Set with Kubernetes Stateful Set
+
+Portworx supports Stateful Sets which allow you to deploy a MongoDB replica. With stateful sets the PVC are dynamically created based on a provided storage class. Try the following command to launch a 3 node MongoDB replicas:
+
+> helm install --name px --set persistentVolume.storageClass=px-ha-sc stable/mongodb-replicaset
+
+You can watch the 3 pods (px-mongodb-replicaset-0, px-mongodb-replicaset-1, px-mongodb-replicaset-2) start up and initialize one by one:
+
+> watch kubectl get pods -o wide
+
+Get the volume list from pxctl, you should see 3 new 10GB volumes that were created:
+
+> kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume list
+
+Check the health of all three cluster members using the following command:
+
+> for i in 0 1 2; do kubectl exec px-mongodb-replicaset-$i -- sh -c 'mongo --eval="printjson(db.serverStatus())"'; done
+
+That's a lot of JSON but if you look closely you will see that px-mongodb-replicaset-0 should be your elected primary. You can connect to it and write/read data:
+
+> kubectl exec -it px-mongodb-replicaset-0 -- mongo --host px-mongodb-replicaset-0
+
+You can learn more about what you can do with this helm chart here, feel free to keep using this shell to try out some of the commands listed:
+
+Link: https://github.com/bitnami/charts/tree/master/bitnami/mongodb
+
 <hr>
 
 * Helm
