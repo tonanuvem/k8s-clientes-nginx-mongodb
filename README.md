@@ -108,6 +108,16 @@ db.ships.find({}, {name:true, _id:false})
 
 db.ships.findOne({'name':'USS Enterprise-D'})
 
+> NODE=`kubectl get pods -l app=mongodb -o wide | grep -v NAME | awk '{print $7}'`
+
+> kubectl cordon ${NODE}
+
+> POD=`kubectl get pods -l app=mongodb -o wide | grep -v NAME | awk '{print $1}'`
+
+> kubectl delete pod ${POD}
+
+> watch kubectl get pods -l app=mongo -o wide
+
 * Helm
  
 > helm install --name mongodb --set auth.enabled=false,service.portName=mongo,persistence.existingClaim=px-mongo-pvc bitnami/mongodb
