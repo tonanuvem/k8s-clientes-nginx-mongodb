@@ -81,7 +81,7 @@ Events:
 
 Exemplo de uso: https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/create-pvcs/dynamic-provisioning/
 
-> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/pvc-storageclass.yaml
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_pvc-storageclass.yaml
 
 > kubectl describe pvc mongo-pvc
 
