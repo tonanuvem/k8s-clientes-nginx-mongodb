@@ -30,3 +30,17 @@ metadata:
     stork.rule/post-snapshot: px-mongodb-postsnap-rule
 spec:
   persistentVolumeClaimName: px-mongo-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: px-mongo-snap-clone
+  annotations:
+    snapshot.alpha.kubernetes.io/snapshot: px-mongo-snapshot
+spec:
+  accessModes:
+     - ReadWriteOnce
+  storageClassName: stork-snapshot-sc
+  resources:
+    requests:
+      storage: 20Gi
