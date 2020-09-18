@@ -49,12 +49,10 @@ Demora uns 4 min.
 > PX_POD=$(kubectl get pods -l name=portworx -n kube-system -o jsonpath='{.items[0].metadata.name}')
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 
-Nodes: 3 node(s) with storage (3 online)
-Global Storage Pool
-Total Used    	:  5.6 GiB
-Total Capacity	:  90 GiB
-
--
+|Nodes: 3 node(s) with storage (3 online)
+|Global Storage Pool
+|Total Used    	:  5.6 GiB
+|Total Capacity	:  90 GiB
 
 - Agora temos um cluster Portworx de 3 nós ativado!
 - Vamos mergulhar em nosso status de cluster.
