@@ -9,6 +9,8 @@ spec:
   selector:
     matchLabels:
       app: frontend
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -46,6 +48,8 @@ spec:
   selector:
     matchLabels:
       app: backend
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -84,6 +88,8 @@ spec:
   selector:
     matchLabels:
       app: mongo
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -128,6 +134,8 @@ spec:
   selector:
     matchLabels:
       app: mongoexpress
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
