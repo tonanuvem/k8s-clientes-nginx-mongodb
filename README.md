@@ -46,6 +46,8 @@ Aguadar até: Ready 1/1 (Demora uns 4 min) --> Para sair, CTRL + C
 
 > kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 
+> kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl volume list
+
 - Agora temos um cluster Portworx de 3 nós ativado!
 - Todos os 3 nós estão online e usam nomes de nós Kubernetes como os IDs de nós Portworx.
 - Observe que Portworx agrupou o dispositivo de bloco de cada nó em um cluster de armazenamento de 3X o tamanho.
