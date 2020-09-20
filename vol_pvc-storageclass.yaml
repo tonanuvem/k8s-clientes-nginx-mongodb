@@ -4,7 +4,7 @@ metadata:
     name: portworx-storageclass
 provisioner: kubernetes.io/portworx-volume
 parameters:
-   repl: "3
+   repl: "3"
    io_profile: "db"
    fs: "xfs"
 allowVolumeExpansion: true
