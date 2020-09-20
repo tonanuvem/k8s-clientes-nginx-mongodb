@@ -4,9 +4,8 @@ metadata:
     name: portworx-storageclass
 provisioner: kubernetes.io/portworx-volume
 parameters:
-   repl: "3"
-   shared: "true"
-   io_profile: "db_remote"
+   repl: "3
+   io_profile: "db"
    fs: "xfs"
 allowVolumeExpansion: true
 ---
