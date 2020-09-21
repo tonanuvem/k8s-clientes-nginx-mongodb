@@ -93,7 +93,7 @@ Acessar : http://IP:32000
 
 <hr>
 
-* MongoDB
+* MongoDB (https://portworx.com/run-ha-mongodb-gke/)
 
 Criar o Deploy e SVC
 
