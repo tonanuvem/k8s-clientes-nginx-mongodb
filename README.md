@@ -83,7 +83,9 @@ Verificar o volume criado dinamicamente.
 
 Executar CLIENTE_MONGO:
 
-> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_mongo-deploy.yaml
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_mongo.yaml
+
+> kubectl create -f https://tonanuvem.github.io/k8s-clientes-nginx-mongodb/vol_clientes.yaml
 
 > kubectl get svc
 
@@ -117,13 +119,9 @@ exit
 
 > NODE=$(kubectl get pods -l app=mongo -o wide | grep -v NAME | awk '{print $7}')
 
-> echo $NODE
-
-> kubectl cordon ${NODE}
-
 > POD=$(kubectl get pods -l app=mongo -o wide | grep -v NAME | awk '{print $1}')
 
-> kubectl delete pod ${POD}
+> kubectl cordon $NODE && kubectl delete pod $POD && kubectl get pod -o wide && kubectl uncordon $NODE
 
 > watch kubectl get pods -l app=mongo -o wide
 
