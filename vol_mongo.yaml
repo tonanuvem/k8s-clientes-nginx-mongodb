@@ -1,1 +1,71 @@
-
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+    name: px-ha-sc
+provisioner: kubernetes.io/portworx-volume
+parameters:
+  repl: "3"
+  io_profile: "db_remote"
+  priority_io: "high"
+  fs: "xfs"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+   name: px-mongo-pvc
+   annotations:
+     volume.beta.kubernetes.io/storage-class: px-ha-sc
+spec:
+   accessModes:
+     - ReadWriteOnce
+   resources:
+     requests:
+       storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo  
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      schedulerName: stork
+      containers:
+      - name: mongo
+        image: mongo
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongodb
+      volumes:
+      - name: mongodb
+        persistentVolumeClaim:
+          claimName: px-mongo-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    name: mongo
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 27017
+    targetPort: 27017
+  selector:
+    app: mongo
