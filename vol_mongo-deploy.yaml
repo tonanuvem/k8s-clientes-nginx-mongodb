@@ -76,7 +76,6 @@ spec:
 #      nodePort: 32500
 #  type: NodePort
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -84,12 +83,16 @@ metadata:
   labels:
     name: mongo
 spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+    # type: Recreate
   replicas: 1
   selector:
     matchLabels:
       app: mongo
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -103,9 +106,9 @@ spec:
           containerPort: 27017
         volumeMounts:
         - mountPath: /data
-          name: data-volume
+          name: volumedados
       volumes:
-        - name: data-volume
+        - name: volumedados
           persistentVolumeClaim:
             claimName: mongo-pvc
 ---
