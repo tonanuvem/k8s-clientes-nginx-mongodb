@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
@@ -44,7 +44,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend
@@ -83,7 +83,7 @@ metadata:
   labels:
     app: mongoexpress
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mongoexpress
