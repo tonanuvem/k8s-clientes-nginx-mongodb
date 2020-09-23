@@ -1,0 +1,20 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: frontend-pdb
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: frontend
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: backend
+---
