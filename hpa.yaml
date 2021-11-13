@@ -1,5 +1,6 @@
 # https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
 # https://rancher.com/docs/rancher/v2.5/en/k8s-in-rancher/horitzontal-pod-autoscaler/testing-hpa/
+# https://docs.oracle.com/pt-br/iaas/Content/ContEng/Tasks/contengusinghorizontalpodautoscaler.htm
 #apiVersion: autoscaling/v2beta1
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
