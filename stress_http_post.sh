@@ -12,8 +12,8 @@ NOW=$(date)
 for i in 'seq $NUM'
 do
   curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/html' -d '{ \ 
-     "fname": "teste_$i_$NOW", \ 
-     "lname": "teste_$i_$NOW" \ 
+     "fname": "'teste_$i_$NOW'", \ 
+     "lname": "'teste_$i_$NOW'" \ 
    }' 'http://$IP:32500/api/clientes'
    sleep $SLEEP
 done
