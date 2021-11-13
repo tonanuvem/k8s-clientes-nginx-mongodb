@@ -30,11 +30,14 @@ spec:
     pods:
       metric:
         name: packets-per-second
-      target:
-        type: AverageValue
-        averageValue: 1
+        target:
+          type: AverageValue
+          averageValue: 1
   - type: Object
     object:
       metric:
         name: http_requests
         selector: {matchLabels: {verb: GET}}       
+        target:
+          type: AverageValue
+          averageValue: 1
