@@ -1,3 +1,7 @@
+# helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+# helm repo update
+# helm install metrics-server metrics-server/metrics-server --set args=--kubelet-insecure-tls
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
