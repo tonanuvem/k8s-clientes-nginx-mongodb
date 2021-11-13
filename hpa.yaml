@@ -20,24 +20,24 @@ spec:
       target:
         type: Utilization
         averageUtilization: 10
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 100
-  - type: Pods
-    pods:
-      metric:
-        name: packets-per-second
-        target:
-          type: AverageValue
-          averageValue: 1
-  - type: Object
-    object:
-      metric:
-        name: http_requests
-        selector: {matchLabels: {verb: GET}}       
-        target:
-          type: AverageValue
-          averageValue: 1
+  #- type: Resource
+  #  resource:
+  #    name: memory
+  #    target:
+  #      type: Utilization
+  #      averageUtilization: 100
+  #- type: Pods
+  #  pods:
+  #    metric:
+  #      name: packets-per-second
+  #      target:
+  #        type: AverageValue
+  #        averageValue: 1
+  #- type: Object
+  #  object:
+  #    metric:
+  #      name: http_requests
+  #      selector: {matchLabels: {verb: GET}}       
+  #      target:
+  #        type: AverageValue
+  #        averageValue: 1
