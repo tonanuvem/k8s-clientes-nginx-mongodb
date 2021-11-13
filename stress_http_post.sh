@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/rakyll/hey
+
 IP=localhost
 NUM=100
 SLEEP=0.5
