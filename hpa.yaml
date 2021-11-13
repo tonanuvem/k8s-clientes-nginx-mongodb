@@ -1,3 +1,4 @@
+# https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
 # https://rancher.com/docs/rancher/v2.5/en/k8s-in-rancher/horitzontal-pod-autoscaler/testing-hpa/
 #apiVersion: autoscaling/v2beta1
 apiVersion: autoscaling/v2beta2
@@ -22,9 +23,10 @@ spec:
   - type: Resource
     resource:
       name: memory
-      target:
-        type: Utilization
-        averageUtilization: 100Mi
+      targetAverageValue: 100Mi
+      #target:
+      #  type: Utilization
+      #  averageUtilization: 100
   - type: Pods
     pods:
       metric:
