@@ -7,7 +7,7 @@
 IP=localhost
 NUM=100
 SLEEP=0.5
-NOW=$(date)
+NOW=`date +%Y-%m-%d_%H-%M-%S`
 
 for i in 'seq $NUM'
 do
