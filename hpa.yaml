@@ -33,3 +33,8 @@ spec:
       target:
         type: AverageValue
         averageValue: 1
+  - type: Object
+    object:
+      metric:
+        name: http_requests
+        selector: {matchLabels: {verb: GET}}       
