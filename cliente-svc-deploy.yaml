@@ -61,6 +61,11 @@ spec:
           ports:
             - name: http
               containerPort: 5000
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
 ---
 kind: Service
 apiVersion: v1
