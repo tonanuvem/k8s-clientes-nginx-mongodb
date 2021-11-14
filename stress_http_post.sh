@@ -10,10 +10,8 @@ SLEEP=0.5
 NOW=`date +%Y-%m-%d_%H-%M-%S`
 
 for i in 'seq $NUM'
-do
-  curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/html' -d '{ \ 
-     "fname": "'teste_$i_$NOW'", \ 
-     "lname": "'teste_$i_$NOW'" \ 
-   }' 'http://$IP:32500/api/clientes'
-   sleep $SLEEP
+do    
+    curl -X POST "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" \
+      -d "{  \"fname\": \"teste_$i_$NOW\", \"lname\": \"teste_$i_$NOW\" }";
+    sleep $SLEEP
 done
