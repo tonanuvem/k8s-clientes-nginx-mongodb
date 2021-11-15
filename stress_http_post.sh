@@ -7,8 +7,8 @@
 # docker run --rm ricoli/hey -n 10 -c 2 -m POST -H "Content-Type: application/json" -d "fname=teste_$RANDOM&lname=teste_$RANDOM" http://$(curl checkip.amazonaws.com):32500/api/clientes 
 
 IP=localhost
-NUM=100
-SLEEP=0.5
+NUM=200
+SLEEP=0.2
 NOW=`date +%Y-%m-%d_%H-%M-%S`
 
 for i in $(seq $NUM); 
