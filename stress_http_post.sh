@@ -13,10 +13,10 @@ NOW=`date +%Y-%m-%d_%H-%M-%S`
 
 for i in $(seq $NUM); 
 do    
-    #printf "\tTeste $i: "
+    printf "\tTeste $i: "
     NUMRANDOM=$RANDOM
     curl -X POST "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" \
       -d "{  \"fname\": \"teste_$NOW_$NUMRANDOM\", \"lname\": \"teste_$NOW_$NUMRANDOM\" }"
     sleep $SLEEP
-    #printf ""
+    printf "\n"
 done
