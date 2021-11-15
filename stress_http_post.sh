@@ -6,7 +6,7 @@
 # hey -n 10 -c 2 -m POST -T "application/x-www-form-urlencoded" -d 'username=1&message=hello' http://your-rest-url/resource
 # docker run --rm ricoli/hey -n 10 -c 2 -m POST -H "Content-Type: application/json" -d "fname=teste_$RANDOM&lname=teste_$RANDOM" http://$(curl checkip.amazonaws.com):32500/api/clientes 
 
-IP=localhost
+IP=$(curl checkip.amazonaws.com)
 NUM=200
 SLEEP=0.2
 NOW=`date +%Y-%m-%d_%H-%M-%S`
@@ -16,7 +16,9 @@ do
     printf "\tTeste $i: "
     NUMRANDOM=$RANDOM
     curl -X POST "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" \
-      -d "{  \"fname\": \"teste_$NOW_$NUMRANDOM\", \"lname\": \"teste_$NOW_$NUMRANDOM\" }"
+      -d "{  \"fname\": \"teste_$NOW_$NUMRANDOM\", \"lname\": \"teste_$NOW_$NUMRANDOM\" }" &
     sleep $SLEEP
     printf "\n"
 done
+
+wait
