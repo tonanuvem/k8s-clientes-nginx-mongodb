@@ -25,5 +25,5 @@ done
 echo ""
 
 echo "Quantidade de registros inseridos no BD:"
-echo $(curl  -s-X GET "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" | grep fname | wc -l)
+echo $(curl  -s -X GET "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" | grep fname | wc -l)
 echo ""
