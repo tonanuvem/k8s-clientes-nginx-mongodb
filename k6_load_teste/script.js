@@ -1,7 +1,7 @@
 import http from 'k6/http';
 
 export default function () {
-  let msec = "teste_"+Date.parse(Date());
+  let msec = "teste_"+Math.round(Date.parse(Date())*Math.random());
   const url = 'http://INSERIR_IP:32500/api/clientes';
   const payload = JSON.stringify({
     fname: msec,
