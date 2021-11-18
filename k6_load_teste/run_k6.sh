@@ -3,4 +3,4 @@
 
 URL=$(curl -s checkip.amazonaws.com)
 sed -i 's|INSERIR_IP|'$URL'|' script.js
-docker run -i loadimpact/k6 --vus 100 --iterations 1000 run - <script.js
+docker run -i loadimpact/k6 --vus 1000 --iterations 10000 run - <script.js
