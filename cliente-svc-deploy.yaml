@@ -63,11 +63,11 @@ spec:
               containerPort: 5000
           resources:
             limits:
-              cpu: 500m
-              memory: 500Mi
-            requests:
               cpu: 250m
               memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
           livenessProbe:
             httpGet:
               port: 5000
