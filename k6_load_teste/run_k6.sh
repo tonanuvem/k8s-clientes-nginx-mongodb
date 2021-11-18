@@ -6,4 +6,4 @@ read URL
 #URL=$(curl -s checkip.amazonaws.com)
 #curl -s https://raw.githubusercontent.com/tonanuvem/k8s-clientes-nginx-mongodb/master/k6_load_teste/script.js
 sed -i 's|INSERIR_IP|'$URL'|' script.js
-docker run -i loadimpact/k6 --vus 100 --iterations 2000 run - <script.js
+docker run -i loadimpact/k6 --vus 500 --iterations 2000 run - <script.js
