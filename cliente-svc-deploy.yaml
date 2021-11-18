@@ -68,6 +68,11 @@ spec:
             requests:
               cpu: 250m
               memory: 250Mi
+          livenessProbe:
+            httpGet:
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
 ---
 kind: Service
 apiVersion: v1
