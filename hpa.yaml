@@ -21,12 +21,12 @@ spec:
       target:
         type: Utilization
         averageUtilization: 10
-  #- type: Resource
-  #  resource:
-  #    name: memory
-  #    target:
-  #      type: Utilization
-  #      averageUtilization: 100
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 200
   #- type: Pods
   #  pods:
   #    metric:
