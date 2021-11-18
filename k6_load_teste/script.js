@@ -15,4 +15,5 @@ export default function () {
   };
 
   http.post(url, payload, params);
+  http.get(url);
 }
