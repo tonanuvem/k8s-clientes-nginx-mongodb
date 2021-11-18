@@ -7,7 +7,9 @@
 # docker run --rm ricoli/hey -n 200 -c 2 -m GET -H "Content-Type: application/json" http://$(curl checkip.amazonaws.com):32500/api/clientes
 # docker run --rm ricoli/hey -n 10 -c 2 -m POST -H "Content-Type: application/json" -d "fname=teste_$RANDOM&lname=teste_$RANDOM" http://$(curl checkip.amazonaws.com):32500/api/clientes 
 
-IP=$(curl checkip.amazonaws.com)
+echo ""
+
+IP=$(curl -s checkip.amazonaws.com)
 NUM=200
 SLEEP=0.2
 NOW=`date +%Y-%m-%d_%H-%M-%S`
