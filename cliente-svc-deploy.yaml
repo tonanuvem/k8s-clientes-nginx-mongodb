@@ -64,15 +64,15 @@ spec:
           resources:
             limits:
               cpu: 250m
-              memory: 250Mi
+              memory: 100Mi
             requests:
               cpu: 100m
-              memory: 150Mi
+              memory: 50Mi
           livenessProbe:
             httpGet:
               port: 5000
             initialDelaySeconds: 5
-            periodSeconds: 10
+            periodSeconds: 5
 ---
 kind: Service
 apiVersion: v1
