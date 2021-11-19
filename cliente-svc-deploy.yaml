@@ -72,7 +72,7 @@ spec:
             httpGet:
               port: 5000
             initialDelaySeconds: 5
-            periodSeconds: 2
+            periodSeconds: 5
 ---
 kind: Service
 apiVersion: v1
