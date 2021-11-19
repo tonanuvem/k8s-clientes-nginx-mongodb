@@ -13,7 +13,7 @@ spec:
     kind: Deployment
     name: backend
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 20
   metrics:
   - type: Resource
     resource:
