@@ -4,6 +4,5 @@
 
 echo "Digite o IP para teste de carga"
 read URL
-LOCAL=$(curl -s checkip.amazonaws.com)
-sed -i 's|INSERIR_IP|'$URL'|' script.js
+sed -i 's|INSERIR_IP|'$URL'|' run_javascript.js
 docker run -i loadimpact/k6 --vus 100 --iterations 2000 run - <run_javascript.js
