@@ -10,7 +10,7 @@
 echo ""
 
 IP=$(curl -s checkip.amazonaws.com)
-NUM=200
+NUM=1000
 SLEEP=0.1
 
 for i in $(seq $NUM); 
