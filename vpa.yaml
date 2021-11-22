@@ -9,5 +9,5 @@ spec:
     kind: Deployment
     name: backend
  updatePolicy:
- updateMode: "initial"
- #updateMode: "Auto"
+ #updateMode: "initial"
+ updateMode: "Auto"
