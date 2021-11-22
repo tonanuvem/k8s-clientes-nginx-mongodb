@@ -20,7 +20,7 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 10
+        averageUtilization: 15
   #- type: Resource
   #  resource:
   #    name: memory
