@@ -12,11 +12,11 @@ echo ""
 IP=$(curl -s checkip.amazonaws.com)
 NUM=200
 SLEEP=0.1
-NOW=`date +_%N_%Y-%m-%d_%H-%M-%S`
 
 for i in $(seq $NUM); 
 do    
     printf "\tTeste $i: "
+    NOW=`date +_%N_%Y-%m-%d_%H-%M-%S`
     curl -X POST "http://$IP:32500/api/clientes" -H "accept: */*" -H "Content-Type: application/json" \
       -d "{  \"fname\": \"teste_$NOW\", \"lname\": \"teste_$NOW\" }"
     sleep $SLEEP
