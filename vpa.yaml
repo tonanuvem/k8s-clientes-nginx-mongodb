@@ -1,5 +1,6 @@
 # https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation
 # https://medium.com/nerd-for-tech/autoscaling-in-kubernetes-hpa-vpa-ab61a2177950
+# https://notes.elmiko.dev/2020/05/22/kubernetes-autoscaler-capd.html
 
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
