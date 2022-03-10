@@ -16,7 +16,7 @@ spec:
             name: frontend
             port:
               number: 80
-      - path: /clientes/api
+      - path: /api
         pathType: Prefix
         backend:
           service:
