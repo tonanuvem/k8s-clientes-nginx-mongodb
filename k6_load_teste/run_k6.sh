@@ -10,7 +10,7 @@ cd $DIR_ATUAL
 
 if [ $(echo $URL | grep . | wc -l) = "0" ]
 then
-  echo "Não foi possível verificar o IP do Master."
+  echo "Não foi possível verificar o IP do Master. Você está rodando o script no Cloud9 ?"
   exit
 fi
 
