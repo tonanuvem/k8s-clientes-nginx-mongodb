@@ -162,6 +162,11 @@ spec:
       containers:
         - name: mongoexpress
           image: "mongo-express"
+          env:
+            - name: ME_CONFIG_BASICAUTH_USERNAME
+              value: "fiap"
+            - name: ME_CONFIG_BASICAUTH_PASSWORD
+              value: "fiap"
           ports:
             - name: http
               containerPort: 8081
