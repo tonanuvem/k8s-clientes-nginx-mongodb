@@ -17,5 +17,8 @@ fi
 echo "IP para teste de carga"
 echo $URL
 sed -i 's|INSERIR_IP|'$URL'|' run_javascript.js
-docker run -i loadimpact/k6 --vus 100 --iterations 2000 run - <run_javascript.js
+
+#docker run -i loadimpact/k6 --vus 100 --iterations 2000 run - <run_javascript.js
+docker run -i grafana/k6 --vus 100 --iterations 2000 run - <run_javascript.js
+
 sed -i 's|'$URL'|INSERIR_IP|' run_javascript.js
