@@ -5,23 +5,23 @@
 
 set -e
 
-VPA_VERSION="master"  # ou uma versão como "v1.1.2" se preferir travar
+VPA_VERSION="master"  # Ou use uma tag específica como "v1.1.2"
+BASE_URL="https://raw.githubusercontent.com/kubernetes/autoscaler/${VPA_VERSION}/vertical-pod-autoscaler/deploy/kubernetes"
 NAMESPACE="kube-system"
 
-echo "👉 Baixando e aplicando os CRDs do VPA..."
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/$VPA_VERSION/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml
+echo "👉 Aplicando CRDs do VPA..."
+kubectl apply -f ${BASE_URL}/vpa-v1-crd-gen.yaml
 
-echo "👉 Criando RBAC e permissões..."
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/$VPA_VERSION/vertical-pod-autoscaler/deploy/vpa-rbac.yaml
+echo "👉 Aplicando RBAC..."
+kubectl apply -f ${BASE_URL}/vpa-rbac.yaml
 
-echo "👉 Implantando os componentes VPA..."
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/$VPA_VERSION/vertical-pod-autoscaler/deploy/vpa-deployment.yaml
-
-echo "✅ VPA implantado com sucesso!"
+echo "👉 Implantando componentes do VPA..."
+kubectl apply -f ${BASE_URL}/vpa-deployment.yaml
 
 echo ""
-echo "🔍 Verificando pods no namespace $NAMESPACE..."
-kubectl get pods -n $NAMESPACE | grep vpa
+echo "✅ VPA implantado com sucesso!"
+echo "🔍 Verificando pods no namespace ${NAMESPACE}..."
+kubectl get pods -n ${NAMESPACE} | grep vpa
 
 echo ""
 echo "✅ Pronto... Agora vamos criar um recurso VPA para testar."
