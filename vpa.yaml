@@ -1,17 +1,12 @@
-# https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation
-# https://medium.com/nerd-for-tech/autoscaling-in-kubernetes-hpa-vpa-ab61a2177950
-# https://notes.elmiko.dev/2020/05/22/kubernetes-autoscaler-capd.html
-
+# Vertical Pod Autoscaler para o MongoDB
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
- name: vpa-clientes
+  name: mongo-vpa
 spec:
- targetRef:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: backend
- updatePolicy:
- #updateMode: "initial"
- updateMode: "Auto"
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       StatefulSet
+    name:       mongo
+  updatePolicy:
+    updateMode: "Auto"
