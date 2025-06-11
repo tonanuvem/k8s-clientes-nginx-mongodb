@@ -1,0 +1,26 @@
+# load-generator-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongo-load-generator
+spec:
+  template:
+    spec:
+      containers:
+      - name: load-generator
+        image: mongo
+        # O comando abaixo se conecta ao serviço 'mongo' e insere 50.000 documentos
+        # contendo uma string longa para consumir CPU e memória.
+        command:
+          - "mongosh"
+          - "--host"
+          - "mongo"
+          - "--eval"
+          - >
+            let largeString = 'string_longa_para_teste_'.repeat(500);
+            for (let i = 1; i <= 50000; i++) {
+              db.test.insertOne({ count: i, data: largeString });
+              if (i % 1000 === 0) print('Inserido ' + i + ' documentos.');
+            }
+      restartPolicy: Never
+  backoffLimit: 4
