@@ -3,10 +3,19 @@ apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
   name: mongo-vpa
+  namespace: default
 spec:
   targetRef:
     apiVersion: "apps/v1"
-    kind:       StatefulSet
-    name:       mongo
+    kind: StatefulSet
+    name: mongo
   updatePolicy:
     updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "*"
+      controlledResources: ["cpu", "memory"]
+  selector:
+    matchLabels:
+      app: mongo
+
